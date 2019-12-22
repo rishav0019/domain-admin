@@ -1,0 +1,52 @@
+@import "../styles/colors";
+
+.container-fluid {
+  margin-top: 10vh;
+  padding-left: 4vw;
+  padding-right: 4vw;
+  background-color: #f0f3f4;
+  height: 100%;
+}
+
+.container {
+  margin-top: 10vh;
+  padding-left: 4vw;
+  padding-right: 4vw;
+  height: 100%;
+}
+
+.details-card {
+  font-family: Lato, sans-serif;
+}
+
+
+.full-width {
+  width: 100%;
+}
+
+.half-width {
+  width: 50%;
+}
+
+
+.custom-btn {
+  text-transform: uppercase;
+}
+
+.green-btn {
+  background: $positive-color;
+  color: White;
+}
+
+.red-btn {
+  background: $negative-color;
+  color: White;
+}
+
+.green-text {
+  color: $positive-color;
+}
+
+.red-text {
+  color: $negative-color;
+}

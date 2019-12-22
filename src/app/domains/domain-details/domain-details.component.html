@@ -1,0 +1,59 @@
+<div class="container-fluid">
+
+  <div class="row">
+    <div class="col-12 col-sm-8 col-lg-5">
+      <mat-form-field class="search-input">
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search Domains">
+        <mat-hint align="start">Search by Name</mat-hint>
+        <mat-icon matSuffix>search</mat-icon>
+      </mat-form-field>
+    </div>
+    <div class="col-12 col-sm-4 col-lg-5">
+      <button type="submit" (click)="openDomainAdd('new')" class="custom-btn" mat-raised-button color="primary">
+        New Domain
+      </button>
+    </div>
+  </div>
+
+
+
+  <div class="row">
+    <div class="col">
+      <ul class="card-list">
+
+        <li *ngFor="let domain of filteredDomains">
+          <mat-card class="details-card">
+            <mat-card-header class="title">
+              <mat-card-title>{{domain.name}}</mat-card-title>
+
+            </mat-card-header>
+            <img class="property-image" mat-card-image src="{{domain.imageUrl}}" alt="logo">
+            <mat-card-content>
+              <p class="description">
+                {{domain.description}}
+              </p>
+              <p class="keyWords">
+                <mat-chip-list #chipList>
+                  <mat-chip *ngFor="let category of domain.keyWords">
+                    {{category}}
+                  </mat-chip>
+                </mat-chip-list>
+              </p>
+            </mat-card-content>
+            <mat-card-actions>
+              <button class="green-text" mat-button (click)="openDomainAdd(domain)">
+                EDIT
+              </button>
+              <button class="red-text" mat-button (click)="deleteDomain(domain.id)">
+                DELETE
+              </button>
+            </mat-card-actions>
+          </mat-card>
+
+        </li>
+
+
+      </ul>
+    </div>
+  </div>
+</div>

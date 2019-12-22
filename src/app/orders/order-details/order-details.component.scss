@@ -1,0 +1,31 @@
+@import "../../../assets/styles/common.scss";
+
+table {
+  width: 100%;
+  border: 1px solid rgba($color: #e2e8ea, $alpha: 1.0);
+  font-family: Lato, sans-serif;
+}
+
+tr.mat-header-row {
+  background-color: #ddd;
+}
+
+td.mat-cell {
+  border-bottom-style: none;
+  color: #58666e;
+}
+
+th.mat-header-cell {
+  border-bottom-style: none;
+  font-size: 1.1em;
+  color: #58666e;
+}
+
+.chips {
+
+  .mat-chip {
+    background-color: $base-color;
+    color: $text-light-color;
+    font-size: 0.8em;
+  }
+}

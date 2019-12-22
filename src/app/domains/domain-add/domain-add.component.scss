@@ -1,0 +1,55 @@
+@import "../../../assets/styles/common.scss";
+
+.image-area {
+  width: 50px;
+  height: 50px;
+  background-color: $placeholder-color;
+  margin-bottom: 20px;
+}
+
+input[type="file"] {
+  position: absolute;
+  z-index: -1;
+  top: 6px;
+  left: 0px;
+  font-size: 15px;
+  color: $placeholder-color;
+  display: none;
+}
+
+.new-button {
+  display: inline-block;
+  // padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 8px;
+  background-color: $base-color;
+  //border: 2px dashed $base-color;
+  color: #fff;
+  opacity: 0.75;
+}
+
+.upload-btn {
+  position: relative;
+  // margin-top: -80px;
+  // margin-left: 20px;
+  // z-index: 999;
+}
+
+.cat-name {
+  // margin-top: 40px;
+}
+
+.action-btn {
+  text-align: center;
+  // margin-top: 40px;
+
+  .custom-btn {
+    margin: 5px;
+  }
+
+
+}
+
+.domain-key-chip-list {
+  width: 100%;
+}

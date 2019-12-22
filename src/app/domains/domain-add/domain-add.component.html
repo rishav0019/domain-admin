@@ -1,0 +1,68 @@
+<div class="modal-container">
+  <form [formGroup]="domainAddForm">
+    <div class="row form-container">
+      <div class="col">
+        <div class="row justify-content-center">
+          <div class="col">
+            <div class="image-area">
+              <img [src]="previewUrl" height="50" width="50" />
+            </div>
+
+            <div class="upload-btn">
+              <label class="new-button" for="upload"> Upload Image</label>
+              <input accept=".png,.jpg" type="file" id="upload" name="image" (change)="fileProgress($event)" />
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <mat-form-field class="cat-name full-width">
+              <input type="text" matInput placeholder="Domain Name" formControlName="domainName" />
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <!-- <mat-form-field class="domain-key-chip-list">
+              <input type="text" placeholder="New keys..." matInput formControlName="keyWord">
+            </mat-form-field> -->
+            <mat-chip-list #chipList>
+              <mat-chip *ngFor="let key of keyWords" [selectable]="selectable" [removable]="removable"
+                (removed)="remove(key)">
+                {{ key }}
+                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+              </mat-chip>
+              <input placeholder="New keys..." [matChipInputFor]="chipList"
+                [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+                (matChipInputTokenEnd)="add($event)" formControlName="keyWord" />
+            </mat-chip-list>
+
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <mat-form-field class="full-width">
+              <textarea matInput placeholder=" Description" formControlName="description"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row action-btn">
+      <div class="col">
+        <button class="custom-btn red-btn" (click)="onCancelClick()" mat-raised-button>
+          Cancel
+        </button>
+
+        <button class="custom-btn green-btn" (click)="saveDomain()" mat-raised-button>
+          <span *ngIf="!domainId">Save</span>
+          <span *ngIf="domainId">Update</span>
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
