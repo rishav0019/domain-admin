@@ -2,21 +2,23 @@
 
 
 
+
 .card-list {
   padding-left: 0;
   margin-left: -5px;
   // list-style-type: none;
 
-  .property-image {
-    width: 300px;
-    height: 175px;
-
+  .domain-image {
+    width: 280px;
+    height: 150px;
+   
     font-size: 25px;
     color: #fff;
     line-height: 50px;
     text-align: center;
-    background: $base-color;
-  }
+    padding-top: 10px;
+}
+
 
   .details-card {
     max-width: 300px;
@@ -26,7 +28,7 @@
   }
 
   .description {
-    // line-height: 1.5em;
+    padding: 0 5px 0 10px ;
     height: 4.5em;
     overflow: hidden;
     // white-space: nowrap;
@@ -35,30 +37,37 @@
   }
 
   .title {
-    // line-height: 1.5em;
-    height: 1.5em;
+    height: 2em;
     overflow: hidden;
-    // white-space: nowrap;
+    padding: 0;
     text-overflow: ellipsis;
     width: 100%;
-
+    
   }
 
   .keyWords {
     height: 2.5em;
     overflow: hidden;
-    // white-space: nowrap;
+    
+    width: 100%;
     text-overflow: ellipsis;
     width: 100%;
 
   }
+  .chip-text{
+    // padding:2px;
+    font-size: 11px;
+  }
+
 
 }
 
 .card-list>li {
   display: inline-block;
 }
-
+.strike-text {
+  text-decoration: line-through;
+}
 .search-input {
   width: 100%;
   margin-bottom: 10px;

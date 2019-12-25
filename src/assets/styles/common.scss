@@ -1,7 +1,7 @@
 @import "../styles/colors";
 
 .container-fluid {
-  margin-top: 10vh;
+  margin-top: 12vh;
   padding-left: 4vw;
   padding-right: 4vw;
   background-color: #f0f3f4;
@@ -30,7 +30,9 @@
 
 
 .custom-btn {
+  
   text-transform: uppercase;
+  // padding: 20px;
 }
 
 .green-btn {

@@ -1,0 +1,44 @@
+@import "../../../assets/styles/colors";
+
+.toolbar-container {
+  display: flex;
+  z-index: 999;
+}
+
+.button-titlebar {
+  border: 1px solid red;
+}
+
+
+.toolbar-container {
+  display: flex;
+  position: fixed;
+  top: 0;
+  background-color: white;
+  width: 100vw;
+  max-width: 100vw;
+  z-index: 999;
+
+  .main-toolbar {
+    background-color: white;
+
+    #titlebar_header_text {
+      margin-left: 2vw;
+    }
+
+    .button-titlebar {
+      padding: 10px;
+      border: none;
+      background: none;
+
+      mat-icon {
+        color: $base-color;
+      }
+    }
+
+    .right-aligned {
+      margin-left: auto;
+      order: 2;
+    }
+  }
+}

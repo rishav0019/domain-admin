@@ -1,3 +1,24 @@
-<!-- <h1>go to details</h1> -->
-<!-- <app-order-details></app-order-details> -->
-<app-domain-details></app-domain-details>
+
+ <div *ngIf="afAuth.user | async as user; else login">
+  <div class="full-page">
+    <mat-sidenav-container>
+      <mat-sidenav #sidenav mode="over">
+        <app-sidenav></app-sidenav>
+      </mat-sidenav>
+      <mat-sidenav-content>
+        <app-titlebar></app-titlebar>
+        <div class="router-outlet">
+          <router-outlet></router-outlet>
+        </div>
+
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+  </div>
+</div>
+
+
+<ng-template #login>
+  <app-login-screen></app-login-screen>
+</ng-template>
+
+ 

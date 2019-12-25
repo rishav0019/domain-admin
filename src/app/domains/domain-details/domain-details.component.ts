@@ -5,6 +5,7 @@ import { Component, OnInit } from "@angular/core";
 import { TitlebarService } from "src/app/common/services/titlebar.service";
 import { Router } from "@angular/router";
 import { MatDialog } from "@angular/material";
+import { CategoryAddComponent } from '../category-add/category-add.component';
 
 @Component({
   selector: "app-domain-details",
@@ -18,12 +19,13 @@ export class DomainDetailsComponent implements OnInit {
   constructor(
     private router: Router,
     public dialog: MatDialog,
+    private titlebarService:TitlebarService,
     private domainService: DomainService
   ) {}
 
   ngOnInit() {
     console.log("ngoninit");
-    // this.titlebarService.changeMessage("Category Details");
+    this.titlebarService.changeMessage("Domains Details");
     this.getDomains();
   }
 
@@ -31,7 +33,7 @@ export class DomainDetailsComponent implements OnInit {
     this.domainService.getDomains().subscribe(response => {
       this.domains = response;
       this.filteredDomains = response;
-      console.log(this.domains);
+      console.log("domains",this.domains);
     });
   }
 
@@ -40,6 +42,18 @@ export class DomainDetailsComponent implements OnInit {
       width: "500px",
       maxWidth: "100vw",
       data: { domain: domain }
+    });
+
+    dialogRef.afterClosed().subscribe(response => {
+      //this.getVouchers();
+    });
+  }
+  openCategoryAdd(domain){
+    console.log("openCategoryAddopenCategoryAdd");
+    const dialogRef = this.dialog.open(CategoryAddComponent, {
+      width: "500px",
+      maxWidth: "100vw",
+      // data: { domain: domain }
     });
 
     dialogRef.afterClosed().subscribe(response => {

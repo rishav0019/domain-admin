@@ -1,0 +1,45 @@
+<h2 mat-dialog-title>Add/Edit Category</h2>
+
+<div mat-dialog-content>
+
+  <div class="modal-container">
+    <form [formGroup]="categoryForm">
+      <div class="form-container">
+    
+
+          <div class="row">
+            <div class="col">
+              <mat-form-field class="full-width">
+                <input type="text" matInput placeholder="Category Name" formControlName="name">
+              </mat-form-field>
+            </div>
+          </div>
+        
+       
+          <div class="row">
+            <div class="col">
+            
+                <mat-chip-list #chipList>
+                  <mat-chip *ngFor="let category of categories" [selectable]="selectable" [removable]="removable" (click)="editChips(category)"
+                    (removed)="remove(category.id)">
+                    {{ category.name }}
+                    <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                  </mat-chip>
+                </mat-chip-list>
+              
+           
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+</div>
+
+<div mat-dialog-actions>
+  <button class="custom-btn" (click)="onNoClick()" mat-button color="primary">Cancel</button>
+  <button class="custom-btn" id="cust-add-btn" (click)="saveCategory()" mat-button color="primary">
+    <span >Save</span>
+  
+  </button>
+</div>

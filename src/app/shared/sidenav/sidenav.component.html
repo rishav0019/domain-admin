@@ -1,1 +1,44 @@
-<p>sidenav works!</p>
+<div class="sidebar">
+
+
+  <div class="user-details">
+    <span class="company-label">Domain.in</span><br>
+    <span>Super Admin</span>
+  </div>
+
+
+  <mat-nav-list>
+
+    <mat-list-item (click)="toggleSidenav()">
+      <mat-icon>business</mat-icon>
+      <a routerLink="domains" routerLinkActive="router-link-active">Domains</a>
+    </mat-list-item>
+    <mat-list-item (click)="toggleSidenav()">
+      <mat-icon>person</mat-icon>
+      <a routerLink="users" routerLinkActive="router-link-active">Users</a>
+    </mat-list-item>
+
+       <mat-list-item (click)="toggleSidenav()">
+      <mat-icon>attach_money</mat-icon>
+      <a routerLink="orders" routerLinkActive="router-link-active">Orders</a>
+    </mat-list-item>
+
+  
+   
+
+    <mat-list-item (click)="toggleSidenav()">
+      <mat-icon>settings</mat-icon>
+      <a routerLink="admins" routerLinkActive="router-link-active">Settings</a>
+    </mat-list-item>
+
+
+    <mat-list-item (click)="toggleSidenav()">
+      <mat-icon>power_settings_new</mat-icon>
+      <a (click)="logout()">Logout</a>
+    </mat-list-item>
+
+
+  </mat-nav-list>
+
+
+</div>

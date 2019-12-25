@@ -32,6 +32,7 @@ import {
   MatSlideToggleModule,
   MatExpansionModule
 } from "@angular/material";
+import { SharedRoutingModule } from './shared-routing.module';
 
 const MaterialComponents = [
   MatToolbarModule,
@@ -60,15 +61,15 @@ const MaterialComponents = [
   MatExpansionModule,
   MatCardModule,
   MatChipsModule
-];
 
+];
 const DependencyModules = [ReactiveFormsModule, FormsModule];
 
 const SharedComponents = [TitlebarComponent, SidenavComponent];
 
 @NgModule({
   declarations: [SharedComponents],
-  imports: [CommonModule, DependencyModules, MaterialComponents],
+  imports: [CommonModule,SharedRoutingModule, DependencyModules, MaterialComponents],
   exports: [MaterialComponents, DependencyModules, SharedComponents]
 })
 export class SharedModule {}

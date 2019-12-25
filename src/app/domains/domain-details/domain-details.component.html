@@ -8,11 +8,22 @@
         <mat-icon matSuffix>search</mat-icon>
       </mat-form-field>
     </div>
-    <div class="col-12 col-sm-4 col-lg-5">
-      <button type="submit" (click)="openDomainAdd('new')" class="custom-btn" mat-raised-button color="primary">
-        New Domain
-      </button>
+    <div class="col-12 col-sm-8 col-lg-5">
+     <div class="row">
+      <div class="col-sm-3">
+        <button type="submit" (click)="openDomainAdd('new')" class="custom-btn" mat-raised-button color="primary">
+          New Domain
+        </button>
+      </div>
+      <div class="col-sm-3">
+        <button type="submit" (click)="openCategoryAdd('new')" class="custom-btn" mat-raised-button color="primary">
+          New Category
+        </button>
+      </div>
+      <!-- <div class="col"></div> -->
+     </div>
     </div>
+  
   </div>
 
 
@@ -23,22 +34,43 @@
 
         <li *ngFor="let domain of filteredDomains">
           <mat-card class="details-card">
-            <mat-card-header class="title">
-              <mat-card-title>{{domain.name}}</mat-card-title>
+            <!-- <mat-card-header > -->
+              <mat-card-content>
+              <mat-card-title class="title">{{domain.name}}</mat-card-title>
+              <mat-card-subtitle >
+              
+               
 
-            </mat-card-header>
-            <img class="property-image" mat-card-image src="{{domain.imageUrl}}" alt="logo">
-            <mat-card-content>
-              <p class="description">
+                  <div class="row keyWords">
+                    <span>Category-</span>
+                    <mat-chip-list #chipList>
+                      <mat-chip   class="chip-text" *ngFor="let category of domain.category">
+                        {{category}}
+                      </mat-chip>
+                    </mat-chip-list>
+                  </div>
+
+
+              
+                </mat-card-subtitle>
+            <!-- </mat-card-header> -->
+            <img class="domain-image" mat-card-image src="{{domain.imageUrl}}" alt="logo">
+            <!-- <mat-card-content> -->
+              <div class="row description">
                 {{domain.description}}
-              </p>
-              <p class="keyWords">
+              </div>          
+              <div class="row keyWords">
+                <span>KeyWords-</span>
                 <mat-chip-list #chipList>
-                  <mat-chip *ngFor="let category of domain.keyWords">
-                    {{category}}
+                  <mat-chip   class="chip-text" *ngFor="let key of domain.keyWords">
+                    {{key}}
                   </mat-chip>
                 </mat-chip-list>
-              </p>
+              </div>
+              <div class="row">
+                <div class="col-4"><span class="price strike-text">{{domain.price | currency:"INR"}}</span></div>
+                <div class="col-4"><span class="price">{{domain.salePrice | currency:"INR"}}</span></div>
+              </div>
             </mat-card-content>
             <mat-card-actions>
               <button class="green-text" mat-button (click)="openDomainAdd(domain)">

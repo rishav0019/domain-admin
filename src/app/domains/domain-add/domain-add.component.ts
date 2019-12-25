@@ -2,7 +2,7 @@ import { DomainService } from "./../../common/services/domain.service";
 import { Domain } from "./../../common/models/domain.model";
 import { Component, OnInit, Inject } from "@angular/core";
 import { FormBuilder, FormGroup } from "@angular/forms";
-import { finalize } from "rxjs/operators";
+import { finalize, startWith, map } from "rxjs/operators";
 import {
   AngularFireStorage,
   AngularFireStorageReference,
@@ -14,6 +14,9 @@ import {
   MatDialogRef,
   MAT_DIALOG_DATA
 } from "@angular/material";
+import { Category } from 'src/app/common/models/category.model';
+import { CategoryService } from 'src/app/common/services/category.service';
+import { Observable } from 'rxjs';
 
 // export interface Fruit {
 //   name: string;
@@ -32,20 +35,23 @@ export class DomainAddComponent implements OnInit {
   storageRef: AngularFireStorageReference;
   storageTask: AngularFireUploadTask;
   bufferValue = 0;
-  // keyword
+  categories: Category[] = [];
+  selectedCategories: string[] =[]; //[{name:"common"}];
+  filteredCategories: Observable<Category[]>;
   visible = true;
   selectable = true;
   removable = true;
   addOnBlur = true;
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
-  keyWords = []; //= [{ name: "Lemon" }, { name: "Lime" }, { name: "Apple" }];
+  keyWords = ["common"];
 
   constructor(
     private fb: FormBuilder,
     public dialogRef: MatDialogRef<DomainAddComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private storage: AngularFireStorage,
-    private domainService: DomainService
+    private domainService: DomainService,
+    private categoryService: CategoryService
   ) {}
 
   ngOnInit() {
@@ -53,7 +59,10 @@ export class DomainAddComponent implements OnInit {
       domainName: [""],
       description: [""],
       keyWord: [""],
-      imageUrl: [""]
+      imageUrl: [""],
+      price:[""],
+      salePrice:[""],
+      category:[""]
     });
     if (this.data.domain) {
       this.domainId = this.data.domain.id;
@@ -62,8 +71,62 @@ export class DomainAddComponent implements OnInit {
         this.populateDomain(this.data.domain);
       }
     }
+    this.categoryService.getCategories().subscribe(response => {
+      this.categories = response;
+
+      // console.log();
+
+      this.filteredCategories = this.domainAddForm.get("category").valueChanges.pipe(
+        startWith(""),
+        map(value => this._categoryFilter(value))
+      );
+
+    })
+  }
+  private _categoryFilter(value: string): Category[] {
+    console.log("................", value);
+    
+    if (typeof value == "string") {
+
+      const filterValue = value.toLowerCase();
+      return this.categories.filter(category =>
+        category.name.toLowerCase().includes(filterValue)
+      );
+    } else {
+      this.addCategories(value);
+    }
+  }
+//category add
+addCategory(event: MatChipInputEvent): void {
+  console.log("........event........",event);
+  console.log("........event.value........",event.value);
+  const input = event.input;
+  // const value = event.value;
+
+  // Add our fruit
+  if ((event.value || "").trim()) {
+    console.log("........this.addCategories(event.value)........");
+    this.addCategories(event.value)
   }
 
+  // Reset the input value
+  if (input) {
+    input.value = "";
+  }
+}
+  addCategories(category: any) {
+    console.log("........category........",category);
+    this.selectedCategories.push(category);
+    this.domainAddForm.patchValue({
+      category: " "
+    })
+
+  }
+  removeCategory(category) {
+    let index = this.selectedCategories.findIndex(data => data== category);
+
+    this.selectedCategories.splice(index, 1);
+  }
   //keyword add
   add(event: MatChipInputEvent): void {
     const input = event.input;
@@ -111,9 +174,12 @@ export class DomainAddComponent implements OnInit {
   getDomainDetail() {
     let domain: Domain = {
       name: this.domainAddForm.get("domainName").value,
-      description: this.domainAddForm.get("description").value
+      description: this.domainAddForm.get("description").value,
+      price: this.domainAddForm.get("price").value,
+      salePrice: this.domainAddForm.get("salePrice").value,
+      
     };
-
+    domain.category=this.selectedCategories,
     domain.imageUrl = this.previewUrl;
     domain.keyWords = this.keyWords;
 
@@ -160,43 +226,6 @@ export class DomainAddComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  // uploadImage(file) {
-  //   let domain: Domain = {
-  //     name: this.domainAddForm.get("domainName").value,
-  //     keyWord: this.keyWords,
-  //     description: this.domainAddForm.get("description").value
-  //   };
-  //   console.log(domain, "......................");
-  //   const originalName: string = file.name;
-  //   const lastDot = originalName.lastIndexOf(".");
-  //   const ext = originalName.substring(lastDot + 1);
-
-  //   var filename = domain.name + "_" + originalName + "." + ext;
-  //   var filePath = filename;
-
-  //   if (ext == "jpg" || ext == "png") {
-  //     this.storageRef = this.storage.ref(filePath);
-  //     this.storageTask = this.storageRef.put(file);
-  //     this.storageTask.percentageChanges().subscribe(value => {
-  //       this.bufferValue = value;
-  //       //  console.log("bufferValue:", this.bufferValue);
-  //     });
-  //     this.storageTask
-  //       .snapshotChanges()
-  //       .pipe(
-  //         finalize(() => {
-  //           this.storageRef.getDownloadURL().subscribe(url => {
-  //             console.log(url);
-
-  //             domain.imageUrl = url;
-
-  //             this.setDomain(domain);
-  //           });
-  //         })
-  //       )
-  //       .subscribe();
-  //   }
-  // }
 
   setDomain(domain) {
     if (this.domainId) {
@@ -217,9 +246,12 @@ export class DomainAddComponent implements OnInit {
   populateDomain(domain: Domain) {
     this.domainAddForm.patchValue({
       domainName: domain.name,
-      description: domain.description
+      description: domain.description,
+      price:domain.price,
+      salePrice:domain.salePrice,
+      
     });
-
+    this.selectedCategories=domain.category;
     this.keyWords = domain.keyWords;
     this.previewUrl = domain.imageUrl;
   }

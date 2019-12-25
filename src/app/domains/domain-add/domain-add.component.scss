@@ -1,12 +1,17 @@
 @import "../../../assets/styles/common.scss";
 
 .image-area {
-  width: 50px;
-  height: 50px;
-  background-color: $placeholder-color;
+  width: 280px;
+  height: 150px;
+  // background-color: $placeholder-color;
   margin-bottom: 20px;
 }
-
+.image-box{
+  justify-content: center;
+  
+  padding-bottom: 20px;
+  // padding-top: 10px;
+}
 input[type="file"] {
   position: absolute;
   z-index: -1;
@@ -19,7 +24,7 @@ input[type="file"] {
 
 .new-button {
   display: inline-block;
-  // padding: 8px 12px;
+  padding: 8px 12px;
   cursor: pointer;
   border-radius: 8px;
   background-color: $base-color;
@@ -30,14 +35,11 @@ input[type="file"] {
 
 .upload-btn {
   position: relative;
-  // margin-top: -80px;
-  // margin-left: 20px;
-  // z-index: 999;
+  margin-top: -75px;
+  margin-left: 15px;
+  z-index: 999;
 }
 
-.cat-name {
-  // margin-top: 40px;
-}
 
 .action-btn {
   text-align: center;
@@ -53,3 +55,11 @@ input[type="file"] {
 .domain-key-chip-list {
   width: 100%;
 }
+.modal-container{
+ overflow: auto;
+//  max-height: 100vw;
+// width: 100vw;
+}
+// .domian-name{
+//   padding-top: 20px;
+// }

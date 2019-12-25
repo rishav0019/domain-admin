@@ -26,7 +26,7 @@ export class AuthService {
         if (firebaseUser) {
           //this.setUserData(firebaseUser.user);
           console.log("Login Success", firebaseUser.user);
-          this.router.navigateByUrl('/property');
+          this.router.navigateByUrl('/domains');
         }
       })
       .catch((error) => {

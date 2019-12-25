@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { SidenavService } from 'src/app/common/services/sidenav.service';
+import { AuthService } from 'src/app/common/services/auth.service';
+import { Router } from '@angular/router';
+import { TitlebarService } from '../../common/services/titlebar.service';
 
 @Component({
   selector: 'app-titlebar',
@@ -7,9 +11,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TitlebarComponent implements OnInit {
 
-  constructor() { }
+  @Input() title: string;
+
+  constructor(
+    private sidenavService: SidenavService,
+    private authService: AuthService,
+    private titlebarService: TitlebarService,
+    public router: Router) { }
 
   ngOnInit() {
+    console.log(this.title);
+    this.titlebarService.currentMessage.subscribe(title => this.title = title);
+  }
+
+  toggleSidenav() {
+    this.sidenavService.toggle();
+  }
+
+  logout() {
+    this.authService.logout();
   }
 
 }

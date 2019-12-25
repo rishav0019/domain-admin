@@ -1,0 +1,26 @@
+.full-page {
+    height: 100vh;
+  
+    mat-sidenav-container {
+      height: 100%;
+  
+      mat-toolbar {
+        margin: 0px;
+      }
+  
+      mat-sidenav {
+        width: 15%;
+        font-size: 1em;
+      }
+  
+      .mat-sidenav-content {
+        overflow: hidden;
+      }
+  
+      .router-outlet {
+        overflow: scroll;
+        height: 100%;
+      }
+    }
+  }
+  

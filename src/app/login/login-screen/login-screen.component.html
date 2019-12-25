@@ -1,0 +1,34 @@
+<div class="container-fluid">
+
+    <div class="login-text">
+      <div><span class="company-text">Domain.in</span></div>
+  
+      <div>Admin Panel</div>
+    </div>
+  
+  
+    <div class="row login-wrapper mat-elevation-z1">
+      <div class="col">
+  
+        <mat-form-field class="row full-width">
+          <input type="email" matInput placeholder="Email id" [(ngModel)]="email" autocomplete="off">
+        </mat-form-field>
+  
+        <mat-form-field class="row full-width">
+          <input type="password" matInput placeholder="Password" [(ngModel)]="password" autocomplete="off">
+        </mat-form-field>
+  
+        <div class="form-group row action-btn">
+          <div class="col">
+            <button id="login-button" mat-raised-button type="submit" (click)="onEmailandPasswordSignIn()"
+              color="primary">
+              Sign In
+            </button>
+          </div>
+  
+        </div>
+  
+      </div>
+    </div>
+  </div>
+  

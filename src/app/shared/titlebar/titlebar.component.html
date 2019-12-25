@@ -1,1 +1,32 @@
-<p>titlebar works!</p>
+<div class="toolbar-container">
+  <mat-toolbar class="main-toolbar mat-elevation-z2">
+    <button class="button-titlebar" type="button" (click)="toggleSidenav()">
+      <mat-icon>menu</mat-icon>
+    </button>
+
+    <span id="titlebar_header_text">{{title}}</span>
+
+    <div class="right-aligned">
+      <button class="button-titlebar" type="button">
+        <mat-icon>notifications_none</mat-icon>
+      </button>
+
+      <button class="button-titlebar" type="button" [matMenuTriggerFor]="menu">
+        <mat-icon>account_circle</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>
+          <mat-icon>perm_identity</mat-icon>
+          <span>Profile</span>
+        </button>
+        <button mat-menu-item (click)="logout()">
+          <mat-icon>power_settings_new</mat-icon>
+          <span>Logout</span>
+        </button>
+      </mat-menu>
+    </div>
+
+
+
+  </mat-toolbar>
+</div>
