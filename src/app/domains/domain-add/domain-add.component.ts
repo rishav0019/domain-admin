@@ -1,3 +1,4 @@
+// // "@angular/material": "^8.2.3",
 import { DomainService } from "./../../common/services/domain.service";
 import { Domain } from "./../../common/models/domain.model";
 import { Component, OnInit, Inject } from "@angular/core";
@@ -36,7 +37,7 @@ export class DomainAddComponent implements OnInit {
   storageTask: AngularFireUploadTask;
   bufferValue = 0;
   categories: Category[] = [];
-  selectedCategories: string[] =[]; //[{name:"common"}];
+  selectedCategories: Category[] =[]; //[{name:"common"}];
   filteredCategories: Observable<Category[]>;
   visible = true;
   selectable = true;
@@ -67,7 +68,7 @@ export class DomainAddComponent implements OnInit {
     if (this.data.domain) {
       this.domainId = this.data.domain.id;
       if (this.domainId) {
-        console.log("...........domainId", this.domainId);
+        // console.log("...........domainId", this.domainId);
         this.populateDomain(this.data.domain);
       }
     }
@@ -84,7 +85,7 @@ export class DomainAddComponent implements OnInit {
     })
   }
   private _categoryFilter(value: string): Category[] {
-    console.log("................", value);
+ 
     
     if (typeof value == "string") {
 
@@ -97,28 +98,25 @@ export class DomainAddComponent implements OnInit {
     }
   }
 //category add
-addCategory(event: MatChipInputEvent): void {
-  console.log("........event........",event);
-  console.log("........event.value........",event.value);
-  const input = event.input;
-  // const value = event.value;
+// addCategory(event: MatChipInputEvent): void {
 
-  // Add our fruit
-  if ((event.value || "").trim()) {
-    console.log("........this.addCategories(event.value)........");
-    this.addCategories(event.value)
-  }
+//   const input = event.input;
 
-  // Reset the input value
-  if (input) {
-    input.value = "";
-  }
-}
-  addCategories(category: any) {
-    console.log("........category........",category);
+//   if ((event.value || "").trim()) {
+//     console.log("........this.addCategories(event.value)........");
+//     this.addCategories(event.value)
+//   }
+
+//   // Reset the input value
+//   if (input) {
+//     input.value = "";
+//   }
+// }
+  addCategories(category: Category) {
+
     this.selectedCategories.push(category);
     this.domainAddForm.patchValue({
-      category: " "
+      category: ""
     })
 
   }

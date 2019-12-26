@@ -42,10 +42,10 @@
                
 
                   <div class="row keyWords">
-                    <span>Category-</span>
+                    
                     <mat-chip-list #chipList>
                       <mat-chip   class="chip-text" *ngFor="let category of domain.category">
-                        {{category}}
+                        {{category.name}}
                       </mat-chip>
                     </mat-chip-list>
                   </div>
@@ -60,7 +60,7 @@
                 {{domain.description}}
               </div>          
               <div class="row keyWords">
-                <span>KeyWords-</span>
+               
                 <mat-chip-list #chipList>
                   <mat-chip   class="chip-text" *ngFor="let key of domain.keyWords">
                     {{key}}

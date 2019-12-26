@@ -1,3 +1,5 @@
+import { Category } from './category.model';
+
 export interface Domain {
   id?: string;
   name?: string;
@@ -5,7 +7,7 @@ export interface Domain {
   imageUrl?: string;
   price?: string;
   salePrice?: string;
-  category?: string[];
+  category?: Category[];
   description?: string;
   creationDate?: Date;
   modificationDate?: Date;

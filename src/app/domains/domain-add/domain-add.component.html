@@ -5,7 +5,7 @@
         <div class="row image-box">
           <div class="col">
             <div class="image-area">
-              <img [src]="previewUrl" height="150" width="280" />
+              <img [src]="previewUrl" height="120" width="280" />
             </div>
 
             <div class="upload-btn">
@@ -77,14 +77,10 @@
             <mat-form-field class="full-width">
               <input type="text" placeholder="Choose Category" 
               matInput [matAutocomplete]="auto"
-              formControlName="category"
-              [matChipInputFor]="chips"
-              [matChipInputSeparatorKeyCodes]="separatorKeysCodes" 
-              [matChipInputAddOnBlur]="addOnBlur"
-              (matChipInputTokenEnd)="addCategory($event)"
+              formControlName="category"           
               >
             <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-              <mat-option *ngFor="let category of filteredCategories | async" [value]="category.name">
+              <mat-option *ngFor="let category of filteredCategories | async" [value]="category">
                 {{category.name}}
               </mat-option>
             </mat-autocomplete>
@@ -92,7 +88,7 @@
             <mat-chip-list #chips>
               <mat-chip *ngFor="let category of selectedCategories" [selectable]="selectable" [removable]="removable"
               (removed)="removeCategory(category)">
-                {{category}}
+                {{category.name}}
                 <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
               </mat-chip>
             </mat-chip-list>
