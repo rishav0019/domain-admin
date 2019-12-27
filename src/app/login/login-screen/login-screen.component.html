@@ -20,9 +20,11 @@
   
         <div class="form-group row action-btn">
           <div class="col">
-            <button id="login-button" mat-raised-button type="submit" (click)="onEmailandPasswordSignIn()"
+            <button  class="custom-btn" id="login-button" mat-raised-button type="submit" (click)="onEmailandPasswordSignIn()"
               color="primary">
-              Sign In
+              <span *ngIf="!ifLoginProgress"> Sign In</span>
+              <mat-spinner [diameter]="40" *ngIf="ifLoginProgress"></mat-spinner>
+              
             </button>
           </div>
   

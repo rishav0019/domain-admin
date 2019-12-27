@@ -40,6 +40,8 @@
 
 }
 
-// #login-button {
-//   background: $base-color;
-// }
+.custom-btn ::ng-deep .mat-progress-spinner circle,
+.mat-spinner circle {
+  stroke: white !important;
+}
+

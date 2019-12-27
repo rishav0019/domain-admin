@@ -12,10 +12,11 @@ export class LoginScreenComponent  {
 
   email: string;
   password: string;
-
+  ifLoginProgress = false;
   constructor(private authService: AuthService, private router: Router, private fb: FormBuilder) { }
 
   public onEmailandPasswordSignIn() {
+    this.ifLoginProgress = true;
     this.authService.onEmailandPasswordSignIn(this.email, this.password);
   }
 

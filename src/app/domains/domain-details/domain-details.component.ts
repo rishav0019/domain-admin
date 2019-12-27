@@ -27,6 +27,7 @@ export class DomainDetailsComponent implements OnInit {
     console.log("ngoninit");
     this.titlebarService.changeMessage("Domains Details");
     this.getDomains();
+    
   }
 
   getDomains() {

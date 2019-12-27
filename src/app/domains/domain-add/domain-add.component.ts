@@ -43,6 +43,7 @@ export class DomainAddComponent implements OnInit {
   selectable = true;
   removable = true;
   addOnBlur = true;
+  paymentType:string;
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
   keyWords = ["common"];
 
@@ -83,6 +84,7 @@ export class DomainAddComponent implements OnInit {
       );
 
     })
+ 
   }
   private _categoryFilter(value: string): Category[] {
  
@@ -97,21 +99,9 @@ export class DomainAddComponent implements OnInit {
       this.addCategories(value);
     }
   }
-//category add
-// addCategory(event: MatChipInputEvent): void {
-
-//   const input = event.input;
-
-//   if ((event.value || "").trim()) {
-//     console.log("........this.addCategories(event.value)........");
-//     this.addCategories(event.value)
-//   }
-
-//   // Reset the input value
-//   if (input) {
-//     input.value = "";
-//   }
-// }
+  updatePaymentStatus(payment){
+    console.log('updatePaymentStatus',payment)
+  }
   addCategories(category: Category) {
 
     this.selectedCategories.push(category);
@@ -186,7 +176,7 @@ export class DomainAddComponent implements OnInit {
   saveDomain() {
     // console.log("save domain");
     let domain: Domain = this.getDomainDetail();
-    console.log("save domain", domain);
+    // console.log("save domain", domain);
     if (this.fileData) {
       const originalName: string = this.fileData.name;
       const lastDot = originalName.lastIndexOf(".");
@@ -200,7 +190,7 @@ export class DomainAddComponent implements OnInit {
         this.storageTask = this.storageRef.put(this.fileData);
         this.storageTask.percentageChanges().subscribe(value => {
           this.bufferValue = value;
-          console.log("bufferValue:", this.bufferValue);
+          // console.log("bufferValue:", this.bufferValue);
         });
         this.storageTask
           .snapshotChanges()
