@@ -1,0 +1,63 @@
+@import "../../../assets/styles/common.scss";
+
+
+
+
+.card-list {
+  padding-left: 0;
+  margin-left: -5px;
+  // list-style-type: none;
+
+  .domain-image {
+    width: 280px;
+    height: 150px;
+   
+    font-size: 25px;
+    color: #fff;
+    line-height: 50px;
+    text-align: center;
+    padding-top: 10px;
+}
+
+
+  .details-card {
+    max-width: 300px;
+    margin: 5px;
+    font-family: Lato, sans-serif;
+    font-size: 1.2em;
+  }
+
+  .description {
+    padding: 0 5px 0 10px ;
+    height: 4.5em;
+    overflow: hidden;
+    // white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 100%;
+  }
+
+  .title {
+    height: 2em;
+    overflow: hidden;
+    padding: 0;
+    text-overflow: ellipsis;
+    width: 100%;
+    
+  }
+
+  .keyWords {
+    height: 2.5em;
+    overflow: hidden;
+    
+    width: 100%;
+    text-overflow: ellipsis;
+    width: 100%;
+
+  }
+  
+}
+
+.card-list>li {
+  display: inline-block;
+}
+

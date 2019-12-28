@@ -43,7 +43,7 @@ export class DomainAddComponent implements OnInit {
   selectable = true;
   removable = true;
   addOnBlur = true;
-  paymentType:string;
+  paymentType="payment1";
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
   keyWords = ["common"];
 
@@ -64,7 +64,8 @@ export class DomainAddComponent implements OnInit {
       imageUrl: [""],
       price:[""],
       salePrice:[""],
-      category:[""]
+      category:[""],
+      payment:[""]
     });
     if (this.data.domain) {
       this.domainId = this.data.domain.id;

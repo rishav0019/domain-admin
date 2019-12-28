@@ -23,13 +23,15 @@ import { DomainsModule } from './domains/domains.module';
 import { OrdersModule } from './orders/orders.module';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { LoginModule } from './login/login.module';
+import { RandomImageModule } from './random-image/random-image.module';
 
 
 const ProjectModules = [
   SharedModule,
   LoginModule,
   DomainsModule,
-  OrdersModule
+  OrdersModule,
+  RandomImageModule
 ];
 
 const DependencyModules = [
