@@ -18,6 +18,7 @@ import {
 import { Category } from 'src/app/common/models/category.model';
 import { CategoryService } from 'src/app/common/services/category.service';
 import { Observable } from 'rxjs';
+import { RandomImageService } from 'src/app/common/services/random-image.service';
 
 // export interface Fruit {
 //   name: string;
@@ -37,13 +38,13 @@ export class DomainAddComponent implements OnInit {
   storageTask: AngularFireUploadTask;
   bufferValue = 0;
   categories: Category[] = [];
-  selectedCategories: Category[] =[]; //[{name:"common"}];
+  selectedCategories: Category[] = []; //[{name:"common"}];
   filteredCategories: Observable<Category[]>;
   visible = true;
   selectable = true;
   removable = true;
   addOnBlur = true;
-  paymentType:string;
+  paymentType: string;
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
   keyWords = ["common"];
 
@@ -53,18 +54,20 @@ export class DomainAddComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private storage: AngularFireStorage,
     private domainService: DomainService,
-    private categoryService: CategoryService
-  ) {}
+    private categoryService: CategoryService,
+    private randomImageService: RandomImageService
+  ) { }
 
   ngOnInit() {
+    this.getRandomImage();
     this.domainAddForm = this.fb.group({
       domainName: [""],
       description: [""],
       keyWord: [""],
       imageUrl: [""],
-      price:[""],
-      salePrice:[""],
-      category:[""]
+      price: [""],
+      salePrice: [""],
+      category: [""]
     });
     if (this.data.domain) {
       this.domainId = this.data.domain.id;
@@ -84,11 +87,26 @@ export class DomainAddComponent implements OnInit {
       );
 
     })
- 
+
+  }
+
+  getRandomImage() {
+    let randomImages = [];
+    let imageNos = 0;
+    let randomIndex;
+
+    this.randomImageService.getRandomImages().subscribe(response => {
+      randomImages = response;
+      imageNos = randomImages.length;
+
+      randomIndex = Math.floor(Math.random() * imageNos) + 0;
+
+      this.previewUrl = randomImages[randomIndex].imageUrl;
+    })
   }
   private _categoryFilter(value: string): Category[] {
- 
-    
+
+
     if (typeof value == "string") {
 
       const filterValue = value.toLowerCase();
@@ -99,8 +117,8 @@ export class DomainAddComponent implements OnInit {
       this.addCategories(value);
     }
   }
-  updatePaymentStatus(payment){
-    console.log('updatePaymentStatus',payment)
+  updatePaymentStatus(payment) {
+    console.log('updatePaymentStatus', payment)
   }
   addCategories(category: Category) {
 
@@ -111,7 +129,7 @@ export class DomainAddComponent implements OnInit {
 
   }
   removeCategory(category) {
-    let index = this.selectedCategories.findIndex(data => data== category);
+    let index = this.selectedCategories.findIndex(data => data == category);
 
     this.selectedCategories.splice(index, 1);
   }
@@ -165,10 +183,10 @@ export class DomainAddComponent implements OnInit {
       description: this.domainAddForm.get("description").value,
       price: this.domainAddForm.get("price").value,
       salePrice: this.domainAddForm.get("salePrice").value,
-      
+
     };
-    domain.category=this.selectedCategories,
-    domain.imageUrl = this.previewUrl;
+    domain.category = this.selectedCategories,
+      domain.imageUrl = this.previewUrl;
     domain.keyWords = this.keyWords;
 
     return domain;
@@ -235,11 +253,11 @@ export class DomainAddComponent implements OnInit {
     this.domainAddForm.patchValue({
       domainName: domain.name,
       description: domain.description,
-      price:domain.price,
-      salePrice:domain.salePrice,
-      
+      price: domain.price,
+      salePrice: domain.salePrice,
+
     });
-    this.selectedCategories=domain.category;
+    this.selectedCategories = domain.category;
     this.keyWords = domain.keyWords;
     this.previewUrl = domain.imageUrl;
   }

@@ -5,8 +5,8 @@ import { DomainDetailsComponent } from './domain-details/domain-details.componen
 
 const routes: Routes = [
   {
-    path:"domains",
-    component:DomainDetailsComponent
+    path: "domains",
+    component: DomainDetailsComponent
   }
 ];
 
