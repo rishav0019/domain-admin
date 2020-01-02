@@ -19,7 +19,6 @@ import {
   MatListModule,
   MatAutocompleteModule,
   MatDatepickerModule,
-  MatSelectModule,
   MatRadioModule,
   MatCheckboxModule,
   MatDialogModule,
@@ -30,8 +29,10 @@ import {
   MatProgressSpinnerModule,
   MatSnackBarModule,
   MatSlideToggleModule,
-  MatExpansionModule
+  MatExpansionModule,
+ 
 } from "@angular/material";
+import {MatSelectModule} from '@angular/material/select';
 import { SharedRoutingModule } from './shared-routing.module';
 
 const MaterialComponents = [

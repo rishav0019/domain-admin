@@ -38,24 +38,24 @@ export class CategoryService {
     return categoryDocument.valueChanges();
   }
 
-  getCategoryByInvoiceNo(invoiceNo: string): Observable<Category[]> {
-    var categoryDocument: AngularFirestoreDocument<Category>;
+  // getCategoryByInvoiceNo(invoiceNo: string): Observable<Category[]> {
+  //   var categoryDocument: AngularFirestoreDocument<Category>;
 
-    var categoryRef = this.afs.collection<Category>("categories", ref =>
-      ref.where("invoiceNumber", "==", invoiceNo).limit(1)
-    );
+  //   var categoryRef = this.afs.collection<Category>("categories", ref =>
+  //     ref.where("invoiceNumber", "==", invoiceNo).limit(1)
+  //   );
 
-    return categoryRef.snapshotChanges().pipe(
-      map(actions =>
-        actions.map(a => {
-          const data = a.payload.doc.data() as Category;
-          data.id = a.payload.doc.id;
-          console.log("getCategoryByInvoiceNo->docId", data.id);
-          return data;
-        })
-      )
-    );
-  }
+  //   return categoryRef.snapshotChanges().pipe(
+  //     map(actions =>
+  //       actions.map(a => {
+  //         const data = a.payload.doc.data() as Category;
+  //         data.id = a.payload.doc.id;
+  //         console.log("getCategoryByInvoiceNo->docId", data.id);
+  //         return data;
+  //       })
+  //     )
+  //   );
+  // }
 
   addCategory(category: Category) {
     category.id = this.afs.createId();

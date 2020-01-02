@@ -1,0 +1,37 @@
+<div class="modal-m8container">
+    <form [formGroup]="randomImageAddForm">
+      <div class="row form-container">
+        <div class="col">
+          <div class="row image-box">
+            <div class="col">
+              <div class="image-area">
+                <img [src]="previewUrl" height="120" width="280" />
+              </div>
+  
+              <div class="upload-btn">
+                <label class="new-button" for="upload"> Upload</label>
+                <input accept=".png,.jpg" type="file" id="upload" name="image" (change)="fileProgress($event)" />
+              </div>
+            </div>
+          </div>
+  
+
+     
+        </div>
+      </div>
+  
+      <div class="row action-btn">
+        <div class="col">
+          <button class="custom-btn red-btn" (click)="onCancelClick()" mat-raised-button>
+            Cancel
+          </button>
+  
+          <button class="custom-btn green-btn" (click)="saveDomain()" mat-raised-button>
+            <span>Save Image</span>
+          
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+  
