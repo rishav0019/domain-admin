@@ -27,6 +27,10 @@ export class ImageDetailsComponent implements OnInit {
     })
 
   }
+  deleteImage(id) {
+
+    this.randomImageService.deleteRandomImage(id);
+  }
   openDomainAdd(domain) {
     const dialogRef = this.dialog.open(AddImageComponent, {
       width: "500px",
