@@ -12,8 +12,8 @@ import { Location } from "@angular/common";
 })
 export class OrderDetailsComponent implements OnInit {
   displayedColumns: string[] = [
-    "id",
-    "amount",
+    "paypalId",
+    "paymentId",
     "email",
     "contact",
     "created_at",
@@ -25,33 +25,17 @@ export class OrderDetailsComponent implements OnInit {
   constructor(
     private titlebarService: TitlebarService,
     private orderService: OrderService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.titlebarService.changeMessage("Orders Details");
-    //  this.getPayments();
+    this.getOrders();
   }
-  data = [
-    {
-      id: "pay_Dh5eTcSl66KViH",
-      entity: "payment",
-      amount: 140,
-      currency: "INR",
-      status: "authorized"
-    },
-    {
-      id: "pay_Dh5eTcSl66KViH",
-      entity: "payment",
-      amount: 140,
-      currency: "INR",
-      status: "authorized"
-    }
-  ];
-  // getPayments() {
-  //   let count = 100;
-  //   this.paymentService.getPayments(count).subscribe(response => {
-  //     console.log("Payments->", response);
-  //     this.dataSource = response;
-  //   });
-  // }
+
+  getOrders() {
+    this.orderService.getOrders().subscribe(response => {
+      console.log("getOrders", response);
+      this.dataSource = response;
+    })
+  }
 }

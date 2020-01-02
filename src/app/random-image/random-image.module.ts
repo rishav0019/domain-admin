@@ -11,7 +11,8 @@ import { AddImageComponent } from './add-image/add-image.component';
   declarations: [ImageDetailsComponent, AddImageComponent],
   imports: [
     CommonModule,
-    RandomImageRoutingModule,SharedModule
+    RandomImageRoutingModule,
+    SharedModule
   ]
 })
 export class RandomImageModule { }

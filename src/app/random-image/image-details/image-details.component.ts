@@ -3,7 +3,8 @@ import { DomainAddComponent } from 'src/app/domains/domain-add/domain-add.compon
 import { MatDialog } from '@angular/material';
 import { AddImageComponent } from '../add-image/add-image.component';
 import { RandomImage } from 'src/app/common/models/randomImage.model';
-import { RamdomImageService } from 'src/app/common/services/ramdom-image.service';
+import { RandomImageService } from 'src/app/common/services/random-image.service';
+
 
 @Component({
   selector: 'app-image-details',
@@ -11,21 +12,21 @@ import { RamdomImageService } from 'src/app/common/services/ramdom-image.service
   styleUrls: ['./image-details.component.scss']
 })
 export class ImageDetailsComponent implements OnInit {
-  randomImages:RandomImage[]=[];
-  constructor(  public dialog: MatDialog,
-    private ramdomImageService:RamdomImageService) { }
+  randomImages: RandomImage[] = [];
+  constructor(public dialog: MatDialog,
+    private randomImageService: RandomImageService) { }
 
   ngOnInit() {
-   
+
     this.getRandomImages();
   }
- getRandomImages(){
-  this.ramdomImageService.getRandomImages().subscribe(resonse=>{
-    this.randomImages=resonse;
-    console.log("randomImages",resonse)
-  })
-  
- }
+  getRandomImages() {
+    this.randomImageService.getRandomImages().subscribe(resonse => {
+      this.randomImages = resonse;
+      console.log("randomImages", resonse)
+    })
+
+  }
   openDomainAdd(domain) {
     const dialogRef = this.dialog.open(AddImageComponent, {
       width: "500px",

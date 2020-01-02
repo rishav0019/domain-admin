@@ -2,7 +2,7 @@
 import { DomainService } from "./../../common/services/domain.service";
 import { Domain } from "./../../common/models/domain.model";
 import { Component, OnInit, Inject } from "@angular/core";
-import { FormBuilder, FormGroup } from "@angular/forms";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { finalize, startWith, map } from "rxjs/operators";
 import {
   AngularFireStorage,
@@ -48,6 +48,11 @@ export class DomainAddComponent implements OnInit {
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
   keyWords = ["common"];
 
+  width: number;
+  height: number;
+  window_url = window.URL || window.webkitURL;
+
+
   constructor(
     private fb: FormBuilder,
     public dialogRef: MatDialogRef<DomainAddComponent>,
@@ -59,21 +64,25 @@ export class DomainAddComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getRandomImage();
+
     this.domainAddForm = this.fb.group({
-      domainName: [""],
+      domainName: ["", Validators.required],
       description: [""],
       keyWord: [""],
       imageUrl: [""],
       price: [""],
-      salePrice: [""],
-      category: [""]
+      salePrice: ["", Validators.required],
+      category: ["", Validators.required]
     });
     if (this.data.domain) {
       this.domainId = this.data.domain.id;
       if (this.domainId) {
         // console.log("...........domainId", this.domainId);
         this.populateDomain(this.data.domain);
+      } else {
+
+        this.getRandomImage();
+
       }
     }
     this.categoryService.getCategories().subscribe(response => {
@@ -171,10 +180,36 @@ export class DomainAddComponent implements OnInit {
       return;
     }
 
+    const img = new Image();
+    img.src = this.window_url.createObjectURL(this.fileData);
+
     var reader = new FileReader();
     reader.readAsDataURL(this.fileData);
     reader.onload = _event => {
-      this.previewUrl = reader.result;
+
+      setTimeout(() => {
+        const width = img.naturalWidth;
+        const height = img.naturalHeight;
+
+
+        window.URL.revokeObjectURL(img.src);
+
+
+        console.log("Image Width:", width);
+        console.log("Image Height:", height);
+
+        if (width <= 200) {
+          this.previewUrl = reader.result;
+        } else {
+          alert("Image Width should be less than 200px.");
+          this.previewUrl = "";
+        }
+
+
+      }, 2000);
+
+
+
     };
   }
   getDomainDetail() {

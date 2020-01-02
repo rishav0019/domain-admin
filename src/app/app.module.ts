@@ -24,6 +24,7 @@ import { OrdersModule } from './orders/orders.module';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { LoginModule } from './login/login.module';
 import { RandomImageModule } from './random-image/random-image.module';
+import { AccountsModule } from './accounts/accounts.module';
 
 
 const ProjectModules = [
@@ -31,7 +32,8 @@ const ProjectModules = [
   LoginModule,
   DomainsModule,
   OrdersModule,
-  RandomImageModule
+  RandomImageModule,
+  AccountsModule
 ];
 
 const DependencyModules = [
@@ -46,7 +48,7 @@ const DependencyModules = [
   AngularFireAuthModule,
   AngularFireStorageModule,
   AngularFirestoreModule
- 
+
 ];
 
 @NgModule({

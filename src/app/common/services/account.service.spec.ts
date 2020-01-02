@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { RamdomImageService } from './ramdom-image.service';
+import { AccountService } from './account.service';
 
-describe('RamdomImageService', () => {
-  let service: RamdomImageService;
+describe('AccountService', () => {
+  let service: AccountService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(RamdomImageService);
+    service = TestBed.inject(AccountService);
   });
 
   it('should be created', () => {

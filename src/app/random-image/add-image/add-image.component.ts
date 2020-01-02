@@ -6,7 +6,7 @@ import { Category } from 'src/app/common/models/category.model';
 import { Observable } from 'rxjs';
 import { RandomImage } from 'src/app/common/models/randomImage.model';
 import { finalize } from 'rxjs/operators';
-import { RamdomImageService } from 'src/app/common/services/ramdom-image.service';
+import { RandomImageService } from 'src/app/common/services/random-image.service';
 
 @Component({
   selector: 'app-add-image',
@@ -16,7 +16,7 @@ import { RamdomImageService } from 'src/app/common/services/ramdom-image.service
 export class AddImageComponent implements OnInit {
 
   randomImageAddForm: FormGroup;
-  randomImage:RandomImage;
+  randomImage: RandomImage;
   fileData: File = null;
   previewUrl: any = null;
   storageRef: AngularFireStorageReference;
@@ -25,26 +25,26 @@ export class AddImageComponent implements OnInit {
   visible = true;
   selectable = true;
 
- 
+
 
   constructor(
     private fb: FormBuilder,
     public dialogRef: MatDialogRef<AddImageComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private storage: AngularFireStorage,
-    private ramdomImageService:RamdomImageService
-    
-  ) {}
+    private randomImageService: RandomImageService
+
+  ) { }
 
   ngOnInit() {
     this.randomImageAddForm = this.fb.group({
-    
+
       imageUrl: [""],
     });
-  
+
   }
- 
- 
+
+
 
 
 
@@ -73,10 +73,10 @@ export class AddImageComponent implements OnInit {
 
     };
     domain.imageUrl = this.previewUrl;
-    return  domain;
+    return domain;
   }
   saveDomain() {
-    console.log("save image",  this.randomImage);
+    console.log("save image", this.randomImage);
     let image: RandomImage = this.getImageDetail();
     console.log("save image", image);
     if (this.fileData) {
@@ -85,7 +85,7 @@ export class AddImageComponent implements OnInit {
       const ext = originalName.substring(lastDot + 1);
 
       var filename = image.name + "_" + originalName + "." + ext;
-      var filePath ="/random-images/"+ filename;
+      var filePath = "/random-images/" + filename;
 
       if (ext == "jpg" || ext == "png") {
         this.storageRef = this.storage.ref(filePath);
@@ -103,7 +103,7 @@ export class AddImageComponent implements OnInit {
 
                 image.imageUrl = url;
 
-                 this.setRandomImage(image);
+                this.setRandomImage(image);
               });
             })
           )
@@ -115,8 +115,8 @@ export class AddImageComponent implements OnInit {
 
     this.dialogRef.close();
   }
-  setRandomImage(image){
-    this.ramdomImageService.addImage(image);
+  setRandomImage(image) {
+    this.randomImageService.addRandomImage(image);
 
   }
   onCancelClick(): void {
