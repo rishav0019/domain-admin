@@ -26,6 +26,10 @@ export class ImageDetailsComponent implements OnInit {
   })
   
  }
+ deleteImage(id) {
+   
+  this.ramdomImageService.deleteImage(id);
+}
   openDomainAdd(domain) {
     const dialogRef = this.dialog.open(AddImageComponent, {
       width: "500px",

@@ -84,7 +84,7 @@ export class AddImageComponent implements OnInit {
       const lastDot = originalName.lastIndexOf(".");
       const ext = originalName.substring(lastDot + 1);
 
-      var filename = image.name + "_" + originalName + "." + ext;
+      var filename =  originalName + "." + ext;
       var filePath ="/random-images/"+ filename;
 
       if (ext == "jpg" || ext == "png") {
