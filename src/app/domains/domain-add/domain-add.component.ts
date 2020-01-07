@@ -19,6 +19,7 @@ import { Category } from 'src/app/common/models/category.model';
 import { CategoryService } from 'src/app/common/services/category.service';
 import { Observable } from 'rxjs';
 import { RandomImageService } from 'src/app/common/services/random-image.service';
+import { TemplateGeneratorService } from 'src/app/common/services/template-generator.service';
 
 // export interface Fruit {
 //   name: string;
@@ -32,6 +33,8 @@ import { RandomImageService } from 'src/app/common/services/random-image.service
 export class DomainAddComponent implements OnInit {
   domainAddForm: FormGroup;
   domainId: string;
+  domain: Domain;
+
   fileData: File = null;
   previewUrl: any = null;
   storageRef: AngularFireStorageReference;
@@ -60,7 +63,8 @@ export class DomainAddComponent implements OnInit {
     private storage: AngularFireStorage,
     private domainService: DomainService,
     private categoryService: CategoryService,
-    private randomImageService: RandomImageService
+    private randomImageService: RandomImageService,
+    private templateGeneratorService: TemplateGeneratorService
   ) { }
 
   ngOnInit() {
@@ -78,6 +82,7 @@ export class DomainAddComponent implements OnInit {
       this.domainId = this.data.domain.id;
       if (this.domainId) {
         // console.log("...........domainId", this.domainId);
+        this.domain = this.data.domain;
         this.populateDomain(this.data.domain);
       } else {
 
@@ -295,6 +300,10 @@ export class DomainAddComponent implements OnInit {
     this.selectedCategories = domain.category;
     this.keyWords = domain.keyWords;
     this.previewUrl = domain.imageUrl;
+  }
+
+  generateTemplate() {
+    this.templateGeneratorService.getTemplate(this.domain);
   }
 
   onCancelClick(): void {

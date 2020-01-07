@@ -30,7 +30,7 @@
 
 
 .custom-btn {
-  
+
   text-transform: uppercase;
   // padding: 20px;
 }
@@ -51,4 +51,8 @@
 
 .red-text {
   color: $negative-color;
+}
+
+.base-btn {
+  color: $base-color;
 }

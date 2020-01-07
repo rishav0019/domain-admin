@@ -5,7 +5,7 @@
         <div class="row image-box">
           <div class="col">
             <div class="image-area">
-              <img [src]="previewUrl" height="120" width="280" />
+              <img class="domain-image" [src]="previewUrl" />
             </div>
 
             <div class="upload-btn">
@@ -110,6 +110,10 @@
         <button class="custom-btn green-btn" (click)="saveDomain()" mat-raised-button>
           <span *ngIf="!domainId">Save</span>
           <span *ngIf="domainId">Update</span>
+        </button>
+
+        <button class="custom-btn base-btn" (click)="generateTemplate()" mat-raised-button *ngIf="domainId">
+          Download template
         </button>
       </div>
     </div>

@@ -30,62 +30,49 @@
 
   <div class="row">
     <div class="col">
-      <ul class="card-list">
 
-        <li *ngFor="let domain of filteredDomains">
-          <mat-card class="details-card">
-            <!-- <mat-card-header > -->
-            <mat-card-content>
-              <mat-card-title class="title">{{domain.name}}</mat-card-title>
-              <mat-card-subtitle>
+      <table mat-table [dataSource]="dataSource">
 
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef>Name</th>
+          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
 
-
-                <div class="row keyWords">
-
-
-                  <div class="cat-text" *ngFor="let category of domain.category">
-                    {{category.name}},
-                  </div>
-
-                </div>
+        <ng-container matColumnDef="keyword">
+          <th mat-header-cell *matHeaderCellDef>keyword</th>
+          <td mat-cell *matCellDef="let element"> {{element.keyWords}} </td>
+        </ng-container>
 
 
+        <ng-container matColumnDef="salePrice">
+          <th mat-header-cell *matHeaderCellDef>salePrice</th>
+          <td mat-cell *matCellDef="let element"> {{element.salePrice|currency:'INR'}} </td>
+        </ng-container>
 
-              </mat-card-subtitle>
-              <!-- </mat-card-header> -->
-              <img class="domain-image" mat-card-image src="{{domain.imageUrl}}" alt="logo">
-              <!-- <mat-card-content> -->
-              <!-- <div class="row description">
-                {{domain.description}}
-              </div> -->
-              <div class="row keyWords">
+        <ng-container matColumnDef="category">
+          <th mat-header-cell *matHeaderCellDef>category</th>
+          <td mat-cell *matCellDef="let element">
 
-                <mat-chip-list #chipList>
-                  <mat-chip class="chip-text" *ngFor="let key of domain.keyWords">
-                    {{key}}
-                  </mat-chip>
-                </mat-chip-list>
-              </div>
-              <div class="row">
-                <div class="col-4"><span class="price strike-text">{{domain.price | currency:"INR"}}</span></div>
-                <div class="col-4"><span class="price">{{domain.salePrice | currency:"INR"}}</span></div>
-              </div>
-            </mat-card-content>
-            <mat-card-actions>
-              <button class="green-text" mat-button (click)="openDomainAdd(domain)">
-                EDIT
-              </button>
-              <button class="red-text" mat-button (click)="deleteDomain(domain.id)">
-                DELETE
-              </button>
-            </mat-card-actions>
-          </mat-card>
+            <span *ngFor="let cat of element.category">{{cat.name}},</span>
 
-        </li>
+          </td>
+        </ng-container>
 
+        <ng-container matColumnDef="creationDate">
+          <th mat-header-cell *matHeaderCellDef>creationDate</th>
+          <td mat-cell *matCellDef="let element">
+            {{element.creationDate.seconds * 1000|date:'dd MMM yyyy, hh:mm:ss aa'}} </td>
+        </ng-container>
 
-      </ul>
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef>status</th>
+          <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+      </table>
     </div>
   </div>
 </div>

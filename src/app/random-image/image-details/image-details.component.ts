@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material';
 import { AddImageComponent } from '../add-image/add-image.component';
 import { RandomImage } from 'src/app/common/models/randomImage.model';
 import { RandomImageService } from 'src/app/common/services/random-image.service';
+import { TitlebarService } from 'src/app/common/services/titlebar.service';
 
 
 @Component({
@@ -14,13 +15,14 @@ import { RandomImageService } from 'src/app/common/services/random-image.service
 export class ImageDetailsComponent implements OnInit {
   randomImages: RandomImage[] = [];
   constructor(public dialog: MatDialog,
-    private randomImageService: RandomImageService) { }
+    private randomImageService: RandomImageService, private titlebarService: TitlebarService) { }
 
   ngOnInit() {
 
     this.getRandomImages();
   }
   getRandomImages() {
+    this.titlebarService.changeMessage("Add Random Images");
     this.randomImageService.getRandomImages().subscribe(resonse => {
       this.randomImages = resonse;
       console.log("randomImages", resonse)

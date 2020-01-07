@@ -7,6 +7,7 @@ export interface Domain {
   imageUrl?: string;
   price?: string;
   salePrice?: string;
+  status?: string;
   category?: Category[];
   description?: string;
   creationDate?: Date;

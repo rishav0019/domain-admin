@@ -53,19 +53,44 @@
     text-overflow: ellipsis;
     width: 100%;
   }
+
   .chip-text {
     // padding:2px;
     font-size: 11px;
   }
 }
 
-.card-list > li {
+.card-list>li {
   display: inline-block;
 }
+
 .strike-text {
   text-decoration: line-through;
 }
+
 .search-input {
   width: 100%;
   margin-bottom: 10px;
+}
+
+
+table {
+  width: 100%;
+  border: 1px solid rgba($color: #e2e8ea, $alpha: 1.0);
+  font-family: Lato, sans-serif;
+}
+
+tr.mat-header-row {
+  background-color: #ddd;
+}
+
+td.mat-cell {
+  border-bottom-style: none;
+  color: #58666e;
+}
+
+th.mat-header-cell {
+  border-bottom-style: none;
+  font-size: 1.1em;
+  color: #58666e;
 }

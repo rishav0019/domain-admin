@@ -16,25 +16,32 @@ export class DomainDetailsComponent implements OnInit {
   domains: Domain[] = [];
   filteredDomains: Domain[] = [];
   selectable = true;
+
+  displayedColumns: string[] = ['name', 'keyword', 'salePrice', 'category', 'creationDate', 'status'];
+  dataSource: any;
+  categories: string[] = [];
+
+
   constructor(
     private router: Router,
     public dialog: MatDialog,
-    private titlebarService:TitlebarService,
+    private titlebarService: TitlebarService,
     private domainService: DomainService
-  ) {}
+  ) { }
 
   ngOnInit() {
     console.log("ngoninit");
     this.titlebarService.changeMessage("Domains Details");
     this.getDomains();
-    
+
   }
 
   getDomains() {
     this.domainService.getDomains().subscribe(response => {
       this.domains = response;
       this.filteredDomains = response;
-      console.log("domains",this.domains);
+      this.dataSource = response;
+      console.log("domains", this.domains);
     });
   }
 
@@ -49,7 +56,7 @@ export class DomainDetailsComponent implements OnInit {
       //this.getVouchers();
     });
   }
-  openCategoryAdd(domain){
+  openCategoryAdd(domain) {
     console.log("openCategoryAddopenCategoryAdd");
     const dialogRef = this.dialog.open(CategoryAddComponent, {
       width: "500px",

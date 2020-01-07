@@ -1,17 +1,30 @@
 @import "../../../assets/styles/common.scss";
 
 .image-area {
-  width: 280px;
-  height: 150px;
+  width: 100%;
+  min-width: 160px;
+  height: 100%;
   // background-color: $placeholder-color;
   margin-bottom: 20px;
+
+  .domain-image {
+    width: 160px;
+    height: auto;
+
+    font-size: 25px;
+    color: #fff;
+    text-align: center;
+    margin: 0 auto;
+  }
 }
-.image-box{
+
+.image-box {
   justify-content: center;
-  
+
   padding-bottom: 20px;
   // padding-top: 10px;
 }
+
 input[type="file"] {
   position: absolute;
   z-index: -1;
@@ -40,26 +53,25 @@ input[type="file"] {
   z-index: 999;
 }
 
-
 .action-btn {
   text-align: center;
-  // margin-top: 40px;
+  margin-top: 32px;
 
   .custom-btn {
     margin: 5px;
   }
-
-
 }
 
 .domain-key-chip-list {
   width: 100%;
 }
-.modal-container{
- overflow: auto;
-//  max-height: 100vw;
-// width: 100vw;
+
+.modal-container {
+  overflow: auto;
+  //  max-height: 100vw;
+  // width: 100vw;
 }
+
 // .domian-name{
 //   padding-top: 20px;
 // }

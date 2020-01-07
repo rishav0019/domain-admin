@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import { RandomImage } from 'src/app/common/models/randomImage.model';
 import { finalize } from 'rxjs/operators';
 import { RandomImageService } from 'src/app/common/services/random-image.service';
+import { TitlebarService } from 'src/app/common/services/titlebar.service';
 
 @Component({
   selector: 'app-add-image',
@@ -32,11 +33,12 @@ export class AddImageComponent implements OnInit {
     public dialogRef: MatDialogRef<AddImageComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private storage: AngularFireStorage,
-    private randomImageService: RandomImageService
+    private randomImageService: RandomImageService,
 
   ) { }
 
   ngOnInit() {
+
     this.randomImageAddForm = this.fb.group({
 
       imageUrl: [""],
