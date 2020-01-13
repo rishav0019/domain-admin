@@ -40,7 +40,7 @@ export class DomainDetailsComponent implements OnInit {
     this.domainService.getDomains().subscribe(response => {
       this.domains = response;
       this.filteredDomains = response;
-      this.dataSource = response;
+      this.dataSource = this.filteredDomains;
       console.log("domains", this.domains);
     });
   }

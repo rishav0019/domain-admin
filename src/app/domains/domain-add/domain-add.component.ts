@@ -70,7 +70,8 @@ export class DomainAddComponent implements OnInit {
   ngOnInit() {
 
     this.domainAddForm = this.fb.group({
-      domainName: ["", Validators.required],
+      name: ["", Validators.required],
+      extension: ["", Validators.required],
       description: [""],
       keyWord: [""],
       imageUrl: [""],
@@ -78,6 +79,7 @@ export class DomainAddComponent implements OnInit {
       salePrice: ["", Validators.required],
       category: ["", Validators.required]
     });
+
     if (this.data.domain) {
       this.domainId = this.data.domain.id;
       if (this.domainId) {
@@ -86,7 +88,7 @@ export class DomainAddComponent implements OnInit {
         this.populateDomain(this.data.domain);
       } else {
 
-        this.getRandomImage();
+        // this.getRandomImage();
 
       }
     }
@@ -217,13 +219,30 @@ export class DomainAddComponent implements OnInit {
 
     };
   }
+
+
+  randomColorGenerator() {
+    let color = ['#ef5350', '#ec407a', '#ab47bc', '#7e57c2', '#5c6bc0', '#2196f3', '#039be5', '#0097a7', '#26a69a', '#43a047', '#689f38', '#ef6c00', '#ff5722'];
+    return color[Math.floor(Math.random() * 13)];
+  }
+
+  randomFontGenerator() {
+    let fontType = ['BioRhyme', 'Roboto', 'Calistoga', 'Lato', 'Playfair Display'];
+    return fontType[Math.floor(Math.random() * 5)];
+  }
+
+
+
   getDomainDetail() {
     let domain: Domain = {
-      name: this.domainAddForm.get("domainName").value,
+      name: this.domainAddForm.get("name").value,
+      extension: this.domainAddForm.get("extension").value,
       description: this.domainAddForm.get("description").value,
       price: this.domainAddForm.get("price").value,
       salePrice: this.domainAddForm.get("salePrice").value,
-
+      color: this.randomColorGenerator(),
+      font: this.randomFontGenerator(),
+      isSold: false
     };
     domain.category = this.selectedCategories,
       domain.imageUrl = this.previewUrl;
@@ -291,7 +310,8 @@ export class DomainAddComponent implements OnInit {
 
   populateDomain(domain: Domain) {
     this.domainAddForm.patchValue({
-      domainName: domain.name,
+      name: domain.name,
+      extension: domain.extension,
       description: domain.description,
       price: domain.price,
       salePrice: domain.salePrice,

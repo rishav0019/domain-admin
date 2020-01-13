@@ -1,28 +1,29 @@
 @import "../../../assets/styles/common.scss";
 
-.image-area {
-  width: 100%;
-  min-width: 160px;
-  height: 100%;
-  // background-color: $placeholder-color;
-  margin-bottom: 20px;
 
-  .domain-image {
-    width: 160px;
-    height: auto;
-
-    font-size: 25px;
-    color: #fff;
-    text-align: center;
-    margin: 0 auto;
-  }
-}
 
 .image-box {
   justify-content: center;
-
-  padding-bottom: 20px;
+  background-color: $placeholder-color;
+  margin-bottom: 32px;
   // padding-top: 10px;
+
+  .image-area {
+    width: 100%;
+    min-width: 160px;
+    height: 200px;
+
+    .domain-image {
+      width: 160px;
+      height: auto;
+
+
+      font-size: 25px;
+      color: #fff;
+      text-align: center;
+      margin: 0 auto;
+    }
+  }
 }
 
 input[type="file"] {

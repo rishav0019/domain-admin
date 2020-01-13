@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "domain-project-51bd1"
+    "default": "domain-project-51bd1",
+    "stag": "domain-project-51bd1"
   }
 }

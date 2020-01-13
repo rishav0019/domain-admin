@@ -25,6 +25,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { LoginModule } from './login/login.module';
 import { RandomImageModule } from './random-image/random-image.module';
 import { AccountsModule } from './accounts/accounts.module';
+import { SearchTermModule } from './search-term/search-term.module';
 
 
 const ProjectModules = [
@@ -33,7 +34,8 @@ const ProjectModules = [
   DomainsModule,
   OrdersModule,
   RandomImageModule,
-  AccountsModule
+  AccountsModule,
+  SearchTermModule
 ];
 
 const DependencyModules = [

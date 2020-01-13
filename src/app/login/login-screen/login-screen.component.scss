@@ -21,7 +21,7 @@
     margin-bottom: 128px;
 
     .company-text {
-      font-family: 'Lobster', cursive;
+      font-family: 'Calistoga';
       font-size: 3em;
       color: $base-color;
     }
@@ -36,6 +36,9 @@
 
   .custom-btn {
     margin: 5px;
+    width: 96px;
+    height: 32px;
+    text-align: center;
   }
 
 }
@@ -43,5 +46,5 @@
 .custom-btn ::ng-deep .mat-progress-spinner circle,
 .mat-spinner circle {
   stroke: white !important;
+  margin: 0 auto;
 }
-
