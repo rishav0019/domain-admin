@@ -48,3 +48,5 @@ public
 public/
 y
 package-lock.json
+.firebase
+.firebase/

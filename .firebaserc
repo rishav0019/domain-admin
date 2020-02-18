@@ -1,6 +1,6 @@
 {
   "projects": {
-    "default": "domain-project-51bd1",
-    "stag": "domain-project-51bd1"
+    "prod": "namoyo-web-e9bcf",
+    "default": "namoyo-web-e9bcf"
   }
 }
