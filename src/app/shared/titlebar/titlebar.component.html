@@ -7,11 +7,15 @@
     <span id="titlebar_header_text">{{title}}</span>
 
     <div class="right-aligned">
-      <button class="button-titlebar" type="button">
+      <!-- <button class="button-titlebar" type="button">
         <mat-icon>notifications_none</mat-icon>
+      </button> -->
+
+      <button class="button-titlebar" title="Logout" (click)="logout()">
+        <mat-icon>power_settings_new</mat-icon>
       </button>
 
-      <button class="button-titlebar" type="button" [matMenuTriggerFor]="menu">
+      <!-- <button class="button-titlebar" type="button" [matMenuTriggerFor]="menu">
         <mat-icon>account_circle</mat-icon>
       </button>
       <mat-menu #menu="matMenu">
@@ -23,7 +27,7 @@
           <mat-icon>power_settings_new</mat-icon>
           <span>Logout</span>
         </button>
-      </mat-menu>
+      </mat-menu> -->
     </div>
 
 

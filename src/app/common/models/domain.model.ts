@@ -9,6 +9,8 @@ export interface Domain {
   price?: string;
   salePrice?: string;
   isSold?: boolean;
+  isDeactive?: boolean;
+  isFeatured?: boolean;
   category?: Category[];
   color?: string;
   font?: string;

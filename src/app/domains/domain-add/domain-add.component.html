@@ -86,6 +86,32 @@
             </mat-chip-list>
           </div>
         </div>
+
+        <div class="row">
+          <div class="col-4">
+
+            <div class=toggle>
+              <mat-slide-toggle formControlName="featured">Is Featured?</mat-slide-toggle>
+            </div>
+
+          </div>
+
+          <div class="col-4">
+
+            <div class=toggle>
+              <mat-slide-toggle formControlName="isSold">Is Sold?</mat-slide-toggle>
+            </div>
+
+          </div>
+
+          <div class="col-4">
+
+            <div class=toggle>
+              <mat-slide-toggle formControlName="isDeactive">Deactivate</mat-slide-toggle>
+            </div>
+
+          </div>
+        </div>
       </div>
     </div>
 
@@ -99,6 +125,10 @@
           <span *ngIf="!domainId">Save</span>
           <span *ngIf="domainId">Update</span>
         </button>
+        <!-- 
+        <button class="custom-btn red-btn" (click)="deactivateDomain()" mat-raised-button *ngIf="domainId">
+          <span>Deactivate</span>
+        </button> -->
 
         <button class="custom-btn base-btn" (click)="generateTemplate()" mat-raised-button *ngIf="domainId">
           Download template

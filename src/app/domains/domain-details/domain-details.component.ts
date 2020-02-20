@@ -1,10 +1,10 @@
 import { DomainService } from "./../../common/services/domain.service";
 import { DomainAddComponent } from "./../domain-add/domain-add.component";
 import { Domain } from "./../../common/models/domain.model";
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import { TitlebarService } from "src/app/common/services/titlebar.service";
 import { Router } from "@angular/router";
-import { MatDialog } from "@angular/material";
+import { MatDialog, MatSort, MatTableDataSource, MatPaginator } from "@angular/material";
 import { CategoryAddComponent } from '../category-add/category-add.component';
 
 @Component({
@@ -18,8 +18,12 @@ export class DomainDetailsComponent implements OnInit {
   selectable = true;
 
   displayedColumns: string[] = ['name', 'keyword', 'salePrice', 'category', 'creationDate', 'status'];
-  dataSource: any;
+  dataSource: MatTableDataSource<Domain>;
   categories: string[] = [];
+
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+
 
 
   constructor(
@@ -34,20 +38,24 @@ export class DomainDetailsComponent implements OnInit {
     this.titlebarService.changeMessage("Domains Details");
     this.getDomains();
 
+
   }
 
   getDomains() {
     this.domainService.getDomains().subscribe(response => {
       this.domains = response;
       this.filteredDomains = response;
-      this.dataSource = this.filteredDomains;
+      this.dataSource = new MatTableDataSource(this.filteredDomains);
+
+      this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
       console.log("domains", this.domains);
     });
   }
 
   openDomainAdd(domain) {
     const dialogRef = this.dialog.open(DomainAddComponent, {
-      width: "500px",
+      width: "550px",
       maxWidth: "100vw",
       data: { domain: domain }
     });
@@ -59,7 +67,7 @@ export class DomainDetailsComponent implements OnInit {
   openCategoryAdd(domain) {
     console.log("openCategoryAddopenCategoryAdd");
     const dialogRef = this.dialog.open(CategoryAddComponent, {
-      width: "500px",
+      width: "550px",
       maxWidth: "100vw",
       // data: { domain: domain }
     });
@@ -73,11 +81,11 @@ export class DomainDetailsComponent implements OnInit {
   }
   applyFilter(filterValue: string) {
     console.log(filterValue);
-    this.filteredDomains = this.domains.filter(doctor => {
+    this.filteredDomains = this.domains.filter(domain => {
       if (!filterValue) {
         return true;
       } else if (
-        doctor.name
+        domain.name
           .trim()
           .toLowerCase()
           .includes(filterValue.trim().toLowerCase())
@@ -87,5 +95,9 @@ export class DomainDetailsComponent implements OnInit {
         return false;
       }
     });
+    this.dataSource = new MatTableDataSource(this.filteredDomains);
+
+    this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
   }
 }

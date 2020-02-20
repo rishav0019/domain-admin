@@ -98,3 +98,34 @@ th.mat-header-cell {
 .mat-row:hover {
   background-color: #e0e0e0;
 }
+
+
+.domain-status {
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+
+  span {
+    font-size: 1.2em;
+  }
+
+  mat-chip-list {
+    font-size: 0.8em;
+  }
+
+  mat-chip {
+    margin-right: 8px;
+  }
+
+  .chip-red {
+    .mat-chip.mat-standard-chip.mat-chip-selected.mat-accent {
+      background-color: #f44336;
+    }
+  }
+
+  .chip-green {
+    .mat-chip.mat-standard-chip.mat-chip-selected.mat-accent {
+      background-color: #388e3c;
+    }
+  }
+}

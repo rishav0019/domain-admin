@@ -31,11 +31,13 @@
   <div class="row">
     <div class="col">
 
-      <table mat-table [dataSource]="dataSource">
+      <table mat-table [dataSource]="dataSource" matSort>
 
         <ng-container matColumnDef="name">
-          <th mat-header-cell *matHeaderCellDef>Name</th>
-          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+          <td mat-cell *matCellDef="let element">
+            {{element.name}}
+          </td>
         </ng-container>
 
         <ng-container matColumnDef="keyword">
@@ -45,8 +47,8 @@
 
 
         <ng-container matColumnDef="salePrice">
-          <th mat-header-cell *matHeaderCellDef>Sale Price</th>
-          <td mat-cell *matCellDef="let element"> {{element.salePrice|currency:'INR'}} </td>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Sale Price</th>
+          <td mat-cell *matCellDef="let element"> {{element.salePrice|currency:'USD'}} </td>
         </ng-container>
 
         <ng-container matColumnDef="category">
@@ -59,20 +61,35 @@
         </ng-container>
 
         <ng-container matColumnDef="creationDate">
-          <th mat-header-cell *matHeaderCellDef>Added on</th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Added on</th>
           <td mat-cell *matCellDef="let element">
             {{element.creationDate.seconds * 1000|date:'dd MMM yyyy, hh:mm:ss aa'}} </td>
         </ng-container>
 
         <ng-container matColumnDef="status">
           <th mat-header-cell *matHeaderCellDef>Status</th>
-          <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+          <td mat-cell *matCellDef="let element">
+            <div class="domain-status">
+              <mat-chip-list *ngIf="element.isFeatured">
+                <mat-chip color="primary" selected>Featured</mat-chip>
+              </mat-chip-list>
+              <mat-chip-list *ngIf="element.isDeactive" class="chip-red">
+                <mat-chip color="accent" selected>Deactive</mat-chip>
+              </mat-chip-list>
+              <mat-chip-list *ngIf="element.isSold" class="chip-green">
+                <mat-chip color="accent" selected>Sold</mat-chip>
+              </mat-chip-list>
+            </div>
+          </td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="openDomainAdd(row)"></tr>
 
       </table>
+
+
+      <mat-paginator [pageSizeOptions]="[10, 25, 100]"></mat-paginator>
     </div>
   </div>
 </div>

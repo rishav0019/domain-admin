@@ -13,13 +13,16 @@ import { COMMA, ENTER } from "@angular/cdk/keycodes";
 import {
   MatChipInputEvent,
   MatDialogRef,
-  MAT_DIALOG_DATA
+  MAT_DIALOG_DATA,
+  MatSnackBar,
+  MatDialog
 } from "@angular/material";
 import { Category } from 'src/app/common/models/category.model';
 import { CategoryService } from 'src/app/common/services/category.service';
 import { Observable } from 'rxjs';
 import { RandomImageService } from 'src/app/common/services/random-image.service';
 import { TemplateGeneratorService } from 'src/app/common/services/template-generator.service';
+import { DeleteDialogComponent } from 'src/app/shared/delete-dialog/delete-dialog.component';
 
 // export interface Fruit {
 //   name: string;
@@ -64,7 +67,9 @@ export class DomainAddComponent implements OnInit {
     private domainService: DomainService,
     private categoryService: CategoryService,
     private randomImageService: RandomImageService,
-    private templateGeneratorService: TemplateGeneratorService
+    private templateGeneratorService: TemplateGeneratorService,
+    private snackBar: MatSnackBar,
+    public dialog: MatDialog,
   ) { }
 
   ngOnInit() {
@@ -77,7 +82,10 @@ export class DomainAddComponent implements OnInit {
       imageUrl: [""],
       price: [""],
       salePrice: ["", Validators.required],
-      category: ["", Validators.required]
+      category: ["", Validators.required],
+      featured: [false],
+      isSold: [false],
+      isDeactive: [false]
     });
 
     if (this.data.domain) {
@@ -240,9 +248,11 @@ export class DomainAddComponent implements OnInit {
       description: this.domainAddForm.get("description").value,
       price: this.domainAddForm.get("price").value,
       salePrice: this.domainAddForm.get("salePrice").value,
+      isFeatured: this.domainAddForm.get("featured").value,
+      isSold: this.domainAddForm.get("isSold").value,
+      isDeactive: this.domainAddForm.get("isDeactive").value,
       color: this.randomColorGenerator(),
-      font: this.randomFontGenerator(),
-      isSold: false
+      font: this.randomFontGenerator()
     };
     domain.category = this.selectedCategories,
       domain.imageUrl = this.previewUrl;
@@ -286,6 +296,7 @@ export class DomainAddComponent implements OnInit {
       }
     } else {
       this.setDomain(domain);
+
     }
 
     this.dialogRef.close();
@@ -294,13 +305,39 @@ export class DomainAddComponent implements OnInit {
 
   setDomain(domain) {
     if (this.domainId) {
-      console.log("updste domain", domain);
+      // console.log("updste domain", domain);
       domain.id = this.domainId;
       this.domainService.updateDomain(domain);
+      this.snackBar.open(domain.name + ' updated !!', '', {
+        duration: 2500
+      });
     } else {
       this.domainService.addDomain(domain);
+      this.snackBar.open(domain.name + ' added to the list !!', '', {
+        duration: 2500
+      });
     }
   }
+
+  // deactivateDomain() {
+
+  //   let domain: Domain = this.getDomainDetail();
+  //   domain.isDeactive = true;
+  //   domain.id = this.domainId;
+
+  //   const dialogRef = this.dialog.open(DeleteDialogComponent, {
+  //     width: "300px",
+  //     data: {
+  //       message: "Are you sure to delete this Domain?",
+  //       heading: "Delete Domain"
+  //     }
+  //   });
+
+  //   dialogRef.afterClosed().subscribe(response => {
+  //     this.domainService.updateDomain(domain);
+  //     this.onCancelClick();
+  //   });
+  // }
 
   // fetchDomainById(id) {
   //   this.domainService.getDomainById(id).subscribe(response => {
@@ -315,7 +352,9 @@ export class DomainAddComponent implements OnInit {
       description: domain.description,
       price: domain.price,
       salePrice: domain.salePrice,
-
+      featured: domain.isFeatured,
+      isSold: domain.isSold,
+      isDeactive: domain.isDeactive
     });
     this.selectedCategories = domain.category;
     this.keyWords = domain.keyWords;

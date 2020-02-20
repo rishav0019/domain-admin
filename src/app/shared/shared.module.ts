@@ -31,10 +31,12 @@ import {
   MatSnackBarModule,
   MatSlideToggleModule,
   MatExpansionModule,
- 
+
 } from "@angular/material";
-import {MatSelectModule} from '@angular/material/select';
+import { MatSelectModule } from '@angular/material/select';
 import { SharedRoutingModule } from './shared-routing.module';
+import { SaveDialogComponent } from './save-dialog/save-dialog.component';
+import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
 
 const MaterialComponents = [
   MatToolbarModule,
@@ -62,16 +64,18 @@ const MaterialComponents = [
   MatSlideToggleModule,
   MatExpansionModule,
   MatCardModule,
-  MatChipsModule
+  MatChipsModule,
+  MatPaginatorModule,
+  MatSortModule
 
 ];
 const DependencyModules = [ReactiveFormsModule, FormsModule];
 
-const SharedComponents = [TitlebarComponent, SidenavComponent];
+const SharedComponents = [TitlebarComponent, SidenavComponent, DeleteDialogComponent, SaveDialogComponent];
 
 @NgModule({
   declarations: [SharedComponents],
-  imports: [CommonModule,SharedRoutingModule, DependencyModules, MaterialComponents],
+  imports: [CommonModule, SharedRoutingModule, DependencyModules, MaterialComponents],
   exports: [MaterialComponents, DependencyModules, SharedComponents]
 })
-export class SharedModule {}
+export class SharedModule { }

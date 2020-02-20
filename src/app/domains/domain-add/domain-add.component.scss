@@ -1,7 +1,5 @@
 @import "../../../assets/styles/common.scss";
 
-
-
 .image-box {
   justify-content: center;
   background-color: $placeholder-color;
@@ -16,7 +14,6 @@
     .domain-image {
       width: 160px;
       height: auto;
-
 
       font-size: 25px;
       color: #fff;
@@ -45,6 +42,10 @@ input[type="file"] {
   //border: 2px dashed $base-color;
   color: #fff;
   opacity: 0.75;
+}
+
+.toggle {
+  margin-top: 16px;
 }
 
 .upload-btn {
